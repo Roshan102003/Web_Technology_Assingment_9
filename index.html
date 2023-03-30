@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Marks</title>
+</head>
+
+<body>
+    <h1>My Marks</h1>
+    <p>Student Name: Roshan Sharma</p>
+    <p>Roll No.: 21it3033</p>
+
+    <h2>Subjects</h2>
+    <ul>
+        {% for subject, marks in marks.items() %}
+        <li>
+            <a href="{{ url_for('subject_marks', subject=subject) }}">{{ subject }}</a> - {{ marks }}
+            <form action="{{ url_for('delete_marks', subject=subject) }}" method="post">
+                <button type="submit">Delete</button>
+
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add your Subjects</h2>
+    <form action="{{ url_for('add_subject') }}" method="post">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required><br><br>
+        <label for="marks">Marks:</label>
+        <input type="number" id="marks" name="marks" required><br><br>
+        <button type="submit">Add Subject</button>
+
+    </form>
+</body>
+
+</html>
